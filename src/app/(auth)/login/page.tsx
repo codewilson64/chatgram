@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('Wilson')
+  const [password, setPassword] = useState('abcABC123#')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
@@ -42,7 +42,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='max-w-[1000px] mx-auto flex justify-center items-center h-screen'>
+    <div className='max-w-[1000px] mx-auto flex justify-center items-center px-10 h-screen'>
       <form onSubmit={handleLogin} className='w-[400px]'>
         <div className='text-center text-5xl font-bold py-5'>
           <h3>Log in</h3>
@@ -69,7 +69,7 @@ const LoginPage = () => {
             />
           </div>
 
-          <Button type='submit' className='w-[120px] mx-auto rounded-lg font-mono'>
+          <Button type='submit' className='w-[120px] mx-auto mt-7 rounded-lg font-mono'>
             {loading ? 'Processing...' : 'Login'}
           </Button>
 

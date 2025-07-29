@@ -47,15 +47,15 @@ const CreatePost = () => {
   }
 
   return (     
-    <form onSubmit={handleCreate} className="w-[600px] border border-gray-300/60 dark:border-zinc-300/20 rounded-t-lg gap-3 py-3 px-3 mx-auto">
-      <div className="w-full flex items-start justify-center">
-        <Link href={`/profile/${user?.username}`} className='w-[10%] rounded-full'>
+    <form onSubmit={handleCreate} className="max-w-[600px] border border-gray-300/60 dark:border-zinc-300/20 rounded-t-lg gap-3 py-3 px-3 mx-auto">
+      <div className="flex items-start gap-2">
+        <Link href={`/profile/${user?.username}`} className='shrink-0 block w-10 h-10 rounded-full overflow-hidden'>
           <Image 
             src={ user?.image || blankImg } 
             alt="profile-img" 
-            width={96} 
-            height={96} 
-            className='size-10 rounded-full object-cover'
+            width={50} 
+            height={50} 
+            className='w-full h-full object-cover'
           />
         </Link>
 

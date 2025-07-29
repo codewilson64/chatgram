@@ -43,7 +43,7 @@ const SignupPage = () => {
   }
 
   return (
-    <div className='max-w-[1000px] mx-auto flex justify-center items-center h-screen'>
+    <div className='max-w-[1000px] mx-auto flex justify-center items-center px-10 h-screen'>
       <form onSubmit={handleSignup} className='w-[400px]'>
         <div className='text-center text-5xl font-bold py-5'>
           <h3>Sign Up</h3>
@@ -79,7 +79,7 @@ const SignupPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           </div>
-          <Button type='submit' className='w-[120px] mx-auto p-2 rounded-lg font-mono'>
+          <Button type='submit' className='w-[120px] mx-auto p-2 mt-7 rounded-lg font-mono'>
             {loading ? 'Processing...' : 'Sign up'}
           </Button>
 

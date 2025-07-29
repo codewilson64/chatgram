@@ -14,7 +14,7 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
   const myProfile = user?.id === profile.id
 
   return (
-    <div className="flex flex-col w-[600px] gap-3 mx-auto border border-gray-300/60 dark:border-zinc-300/20 rounded-lg">
+    <div className="flex flex-col gap-3 border border-gray-300/60 dark:border-zinc-300/20 rounded-lg">
       {/* Top content */}
       <div className='mb-6 p-4'>
         <div className='flex items-center justify-between'>

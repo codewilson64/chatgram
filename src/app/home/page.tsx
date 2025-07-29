@@ -8,11 +8,13 @@ const Homepage = async () => {
 
   return (
     <div>
-      <div className='p-4'>
+      <div className='w-full'>
         <Navbar />
       </div>
-      <CreatePost />
-      <PostsList />
+      <div className='w-full'>
+        <CreatePost />
+        <PostsList />
+      </div>
     </div>
   )
 }

@@ -20,10 +20,12 @@ const profilePage = async ({ params }: { params: Promise<{ username: string }> }
   
   return (
     <>
-      <div className='p-4'>
+      <div className='px-5'>
         <Navbar />
       </div>
-      <UserProfile profile={profile} posts={posts} likedPosts={likedPosts}/>
+      <div className='max-w-[600px] px-4 pb-4 mx-auto'>
+        <UserProfile profile={profile} posts={posts} likedPosts={likedPosts}/>
+      </div>
     </>
   )
 }

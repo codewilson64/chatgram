@@ -40,18 +40,18 @@ const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id:
 
   return (
     <div key={actualPost.id} className='mb-3'>
-      <div className="w-full flex items-start">
-        <Link href={`/profile/${actualPost.author.username}`} className='w-[10%] rounded-full'>
+      <div className="flex items-start gap-2">
+        <Link href={`/profile/${actualPost.author.username}`} className='shrink-0 block w-10 h-10 rounded-full overflow-hidden'>
           <Image 
             src={ actualPost.author.image || blankImg } 
             alt="profile-img" 
-            width={96} 
-            height={96} 
-            className='size-10 rounded-full object-cover'
+            width={50} 
+            height={50} 
+            className='w-full h-full object-cover'
           />
         </Link>
 
-        <div className='w-full'>
+        <div className='flex-1'>
           <div className='flex items-center justify-between'>
             <div className='flex items-center gap-2'>
               <Link href={`/profile/${actualPost.author.username}`} className='font-bold dark:text-gray-200 hover:underline'>{actualPost.author.username}</Link>
@@ -67,7 +67,7 @@ const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id:
             <p className='mb-3 text-sm dark:text-gray-200'>{actualPost.title}</p>
 
              {actualPost.image ? (
-               <Image src={actualPost.image} alt='post image' width={800} height={600} className='w-full object-cover mb-3 rounded-xl'/>
+               <Image src={actualPost.image} alt='post image' width={800} height={600} className='w-full max-w-md object-cover mb-3 rounded-xl'/>
              ): null}
 
             {/* Actions */}
