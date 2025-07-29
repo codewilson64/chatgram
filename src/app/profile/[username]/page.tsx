@@ -6,10 +6,11 @@ import Navbar from '@/components/Navbar'
 import requireAuth from '@/lib/requireAuth'
 
 
-const profilePage = async ({ params }: { params: { username: string } }) => {
+const profilePage = async ({ params }: { params: Promise<{ username: string }> }) => {
   await requireAuth()
   
-  const decodedName = decodeURIComponent(params.username) 
+  const { username } = await params
+  const decodedName = decodeURIComponent(username) 
   const profile = await getUserProfile(decodedName)
   
   if (!profile) return <div>Profile not found</div>;
