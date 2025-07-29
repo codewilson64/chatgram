@@ -27,7 +27,7 @@ const UpdateProfile = ({ profile }: UserProfileProps) => {
   const [bio, setBio] = useState(profile.bio || "")
   const [isUpdating, setIsUpdating] = useState(false)
   const [error, setError] = useState<string | undefined>('')
-  const { user, setUser } = useAuth()
+  const { setUser } = useAuth()
   const router = useRouter()
   const fileRef = useRef<HTMLInputElement | null>(null)
   const { handleImageChange, uploadedImg } = usePreviewImage()
