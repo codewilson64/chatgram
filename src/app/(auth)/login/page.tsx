@@ -11,7 +11,6 @@ const LoginPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState<string | undefined>('')
   const [error, setError] = useState('')
   const router = useRouter()
 
@@ -29,10 +28,9 @@ const LoginPage = () => {
         setUser(response.user)
         // Store user id to localStorage
         localStorage.setItem('user', JSON.stringify(response.user))
-        setSuccess("Login Success")
         router.push('/')
       } else {
-        setError(response.error)
+        setError(response.error || "Something went wrong")
       }
     } 
     catch (error) {

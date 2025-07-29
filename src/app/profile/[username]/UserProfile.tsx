@@ -50,14 +50,14 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
         </div>
         <TabsContent value="posts">
           <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-4'>
-            {posts?.map((post) => (
+            {user && posts?.map((post) => (
               <PostCard key={post.id} post={post} user={user}/>
             ))}
           </div>
         </TabsContent>
         <TabsContent value="likes">
           <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-4'>
-            {likedPosts?.map((likedPost) => (
+            {user && likedPosts?.map((likedPost) => (
               <PostCard key={likedPost.id} likedPost={likedPost} user={user}/>
             ))}
           </div>

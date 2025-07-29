@@ -2,18 +2,18 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type AuthContextType = {
-  user: any;
-  setUser: (user: any) => void;
-};
-
 type AuthUser = {
   id: string,
-  name: string,
+  username: string,
   email: string,
   image?: string | null,
   bio?: string | null
 }
+type AuthContextType = {
+  user: AuthUser | null;
+  setUser: (user: AuthUser | null) => void;
+};
+
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 

@@ -12,7 +12,6 @@ const SignupPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
 
@@ -30,10 +29,9 @@ const SignupPage = () => {
         setUser(response.user)
         // Store user id to localStorage
         localStorage.setItem('user', JSON.stringify(response.user))
-        setSuccess('Sign up success')
         router.push('/')
       } else {
-        setError(response.error)
+        setError(response.error || "Something went wrong")
       }
     } 
     catch (error) {
@@ -92,7 +90,6 @@ const SignupPage = () => {
           </Link>
 
           {error && <div className='text-red-500'>{error}</div>}
-          {success && <div className='text-green-500'>{success}</div>}
         </div>
       </form>
     </div>

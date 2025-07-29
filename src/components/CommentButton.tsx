@@ -4,7 +4,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -15,7 +14,7 @@ import { MessageCircle } from 'lucide-react';
 import { createComment } from '@/actions/post.actions';
 
 export function CommentButton({ post }: {post: {id: string; comments: number}}) {  
-  const [comments, setComments] = useState(post?.comments) 
+  const comments = post?.comments
   const [newComment, setNewComment] = useState('')
   const [isCommenting, setIsCommenting] = useState(false)
   const [error, setError] = useState<string | undefined>('')
@@ -31,8 +30,8 @@ export function CommentButton({ post }: {post: {id: string; comments: number}}) 
         setError(response?.error)
       }
     } 
-    catch (error: any) {
-      console.log(error.message)
+    catch (error) {
+      console.log(error)
     }
     finally {
       setIsCommenting(false)
@@ -60,6 +59,7 @@ export function CommentButton({ post }: {post: {id: string; comments: number}}) 
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction onClick={handlePostComment} disabled={!newComment.trim()}>Post</AlertDialogAction>
+          {error && <div className="text-red-500 font-sm">{error}</div>}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

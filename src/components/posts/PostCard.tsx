@@ -4,7 +4,7 @@ import DeletePost from './DeletePost'
 import UpdatePost from './UpdatePost'
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
-import { LikedPostsProps, PostWithExtras, UserProfileProps } from '@/types';
+import { LikedPostsProps, PostWithExtras } from '@/types';
 import { likePost } from '@/actions/post.actions';
 import { CommentButton } from '../CommentButton';
 import Link from 'next/link';
@@ -13,11 +13,12 @@ import blankImg from '../../../public/blankProfile.webp'
 
 const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id: string }; likedPost?: LikedPostsProps}) => {
   const actualPost = post ?? likedPost?.post;
-  if (!actualPost) return null;
-
-  const [optimisticLikes, setOptimisticLikes] = useState(actualPost._count.likes)
+  
+  const [optimisticLikes, setOptimisticLikes] = useState<number>(actualPost?._count.likes ?? 0)
   const [isLiking, setIsLiking] = useState(false)
-  const [hasLiked, setHasLiked] = useState(actualPost.likes.some(like => like.userId === user?.id))
+  const [hasLiked, setHasLiked] = useState(actualPost?.likes.some(like => like.userId === user?.id))
+  
+  if (!actualPost) return null;
 
   const handleLike = async () => {
     if(isLiking) return 
@@ -30,6 +31,7 @@ const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id:
     catch (error) {
       setOptimisticLikes(actualPost._count.likes)
       setHasLiked(actualPost.likes.some(like => like.userId === user.id))
+      console.log(error)
     }
     finally {
       setIsLiking(false)

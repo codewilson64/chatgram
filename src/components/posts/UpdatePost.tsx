@@ -5,7 +5,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -13,8 +12,7 @@ import {
 } from "@/components/ui/alert-dialog"
 
 import React, { useState } from 'react'
-import { Pencil, X } from 'lucide-react';
-import { Post } from '@prisma/client';
+import { Pencil } from 'lucide-react';
 import { updatePost } from '@/actions/post.actions';
 import { Textarea } from "../ui/textarea";
 
@@ -61,7 +59,10 @@ const UpdatePost = ({post}: {post: { id: string }}) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleUpdate} disabled={!title.trim()}>Post</AlertDialogAction>
+          <AlertDialogAction onClick={handleUpdate} disabled={!title.trim()}>
+            {isUpdating ? "Updating" : "Update"}
+          </AlertDialogAction>
+          {error && <div className="text-red-500 font-sm">{error}</div>}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

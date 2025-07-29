@@ -31,8 +31,14 @@ export const createPost = async (title: string, image: string | null) => {
     revalidatePath('/')
     return {success: 'Post created'}
   } 
-  catch (error: any) {
-    return {error: error.message}
+  catch (error: unknown) {
+    if(error instanceof Error) {
+      console.log("Error in createPost action", error.message)
+      return {error: "Create post failed"}
+    } else {
+      console.log('Unknown error in createPost action', error);
+      return { error: 'An unexpected error occurred' };
+    }
   }
 }
 
@@ -53,8 +59,11 @@ export const getPosts = async () => {
     
     return {success: posts}
   } 
-  catch (error) {
-    return {error: 'Post failed'}
+  catch (error: unknown) { 
+    if(error instanceof Error) {
+      console.log("Error in getPosts action", error.message)
+      return {error: 'Post failed'}
+    }
   }
 }
 
@@ -70,8 +79,11 @@ export const deletePost = async (postId: string) => {
     revalidatePath('/')
     return {success: "Post deleted"}
   } 
-  catch (error) {
-    return {error: 'Post deletion failed'}
+  catch (error: unknown) { 
+    if(error instanceof Error) {
+      console.log("Error in deletePost action", error.message)
+      return {error: 'Delete post failed'}
+    }
   }
 }
 
@@ -94,8 +106,14 @@ export const updatePost = async (postId: string, title: string) => {
     revalidatePath('/')
     return {success: "Post updated"}
   } 
-  catch (error) {
-    return {error: "Update failed"}
+  catch (error: unknown) { 
+    if(error instanceof Error) {
+      console.log("Error in updatePost action", error.message)
+      return {error: 'Update post failed'}
+    } else {
+      console.log('Unknown error in updatePost action', error);
+      return { error: 'An unexpected error occurred' };
+    }
   }
 }
 
@@ -129,9 +147,11 @@ export const likePost = async (postId: string) => {
     revalidatePath('/')
     return {success: true}
   } 
-  catch (error) {
-    console.error("Like Error:", error)
-    return { error: "Failed to like/unlike the post" }
+  catch (error: unknown) { 
+    if(error instanceof Error) {
+      console.log("Error in likePost action", error.message)
+      return {error: 'Like post failed'}
+    }
   }
 }
 
@@ -151,8 +171,10 @@ export const createComment = async (postId: string, content: string) => {
     revalidatePath('/')
     return {success: true, comment}
   } 
-  catch (error) {
-    console.error("Create comment Error:", error)
-    return { error: "Failed to comment the post" }
+  catch (error: unknown) { 
+    if(error instanceof Error) {
+      console.log("Error in createComment action", error.message)
+      return {error: 'Create comment failed'}
+    }
   }
 }

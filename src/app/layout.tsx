@@ -42,7 +42,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-function LayoutWithNavbar({ children }: { children: React.ReactNode }) {
-
-}

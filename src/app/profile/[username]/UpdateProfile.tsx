@@ -5,7 +5,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -43,7 +42,8 @@ const UpdateProfile = ({ profile }: UserProfileProps) => {
 
         // Update localStorage
         const updatedUser = {
-          ...user,
+          id: profile.id,
+          email: profile.email,
           username: newUsername,
           image: uploadedImg || profile.image,
           bio: bio
@@ -109,8 +109,9 @@ const UpdateProfile = ({ profile }: UserProfileProps) => {
             onClick={handleUpdate} 
             disabled={!newUsername.trim() && !uploadedImg}
             >
-              Update
+              {isUpdating ? "Updating..." : "Update"}
             </AlertDialogAction>
+            {error && <div className="text-red-500 font-sm">{error}</div>}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

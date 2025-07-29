@@ -54,9 +54,14 @@ export async function signUp({ username, email, password }: {username: string; e
     }
     
   } 
-  catch (error: any) {
-    console.log("Error in signup route", error.message)
-    return {error: error.message}
+  catch (error: unknown) {
+    if(error instanceof Error) {
+      console.log("Error in signup route", error.message)
+      return {error: error.message}
+    } else {
+      console.log("Unknown error in signup route", error)
+      return { error: "An unexpected error occurred" }
+    }
   }
 }
 
@@ -85,9 +90,14 @@ export async function login({username, password}: {username: string; password: s
         }
     }
   } 
-  catch (error: any) {
-    console.log("Error in login route", error.message)
-    return {error: error.message}
+  catch (error: unknown) {
+    if(error instanceof Error) {
+      console.log("Error in login route", error.message)
+      return {error: error.message}
+    } else {
+      console.log("Unknown error in login route", error);
+      return { error: "An unexpected error occurred" };
+    }
   }
 }
 
@@ -97,8 +107,13 @@ export async function logout() {
     (await cookies()).delete('jwt')
     return {success: "You have logged out"}
   } 
-  catch (error: any) {
-    console.log("Error in logout route", error.message)
-    return {error: error.message}
+  catch (error: unknown) {
+    if(error instanceof Error) {
+      console.log("Error in logout route", error.message)
+      return {error: error.message}
+    } else {
+      console.log("Unknown error in logout route", error);
+      return { error: "An unexpected error occurred" };
+    }
   }
 }

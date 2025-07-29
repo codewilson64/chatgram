@@ -2,7 +2,6 @@
 
 import { Trash2 } from 'lucide-react';
 import { deletePost } from '@/actions/post.actions'
-import { Post } from '@prisma/client';
 
 const DeletePost = ({post}: {post: { id: string }}) => {
 
