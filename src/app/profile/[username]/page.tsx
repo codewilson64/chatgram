@@ -5,13 +5,8 @@ import UserProfile from './UserProfile'
 import Navbar from '@/components/Navbar'
 import requireAuth from '@/lib/requireAuth'
 
-type PageProps = {
-  params: {
-    username: string
-  }
-}
 
-const profilePage = async ({ params }: PageProps) => {
+const profilePage = async ({ params }: { params: { username: string } }) => {
   await requireAuth()
   
   const decodedName = decodeURIComponent(params.username) 
