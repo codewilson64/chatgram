@@ -56,5 +56,18 @@ export type LikedPostsProps = {
     }
 }
 
+export type PostCommentsProps = {
+  id: string,
+  authorId: string,
+  postId: string,
+  content: string,
+  createdAt: Date,
+    author: {
+      id: string,
+      username: string,
+      image: string
+    }[]
+}
+
 
 

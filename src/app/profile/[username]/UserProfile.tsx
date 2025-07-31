@@ -42,7 +42,7 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
       </div>
       {/* Bottom content */}
       <Tabs defaultValue="posts" className="">
-        <div className='px-4'>
+        <div className='px-3'>
         <TabsList>
           <TabsTrigger value="posts">Posts</TabsTrigger>
           <TabsTrigger value="likes">Likes</TabsTrigger>
@@ -53,6 +53,9 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
             {user && posts?.map((post) => (
               <PostCard key={post.id} post={post} user={user}/>
             ))}
+            {posts?.length === 0 && (
+              <div className='h-60 text-sm text-gray-500 flex items-center justify-center'>You have no posts</div>
+            )}
           </div>
         </TabsContent>
         <TabsContent value="likes">
@@ -60,6 +63,9 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
             {user && likedPosts?.map((likedPost) => (
               <PostCard key={likedPost.id} likedPost={likedPost} user={user}/>
             ))}
+            {likedPosts?.length === 0 && (
+              <div className='h-60 text-sm text-gray-500 flex items-center justify-center'>You have no liked posts</div>
+            )}
           </div>
         </TabsContent>
       </Tabs>     

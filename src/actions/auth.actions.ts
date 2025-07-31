@@ -73,12 +73,13 @@ export async function login({username, password}: {username: string; password: s
 
     const user = await prisma.user.findUnique({where: {username}})
     if(!user) return {error: "Incorrect username"}
-
+     
     const match = await bcrypt.compare(password, user.password)
     if(!match) return {error: "Incorrect password"}
 
     // generate token
-    await generateToken(user)
+    await generateToken({id: user.id})
+    
     return {
       success: true, 
         user: {

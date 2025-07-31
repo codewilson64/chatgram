@@ -40,7 +40,7 @@ const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id:
 
   return (
     <div key={actualPost.id} className='mb-3'>
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-3">
         <Link href={`/profile/${actualPost.author.username}`} className='shrink-0 block w-10 h-10 rounded-full overflow-hidden'>
           <Image 
             src={ actualPost.author.image || blankImg } 
@@ -52,23 +52,25 @@ const PostCard = ({ post, user, likedPost }: {post?: PostWithExtras; user: { id:
         </Link>
 
         <div className='flex-1'>
-          <div className='flex items-center justify-between'>
-            <div className='flex items-center gap-2'>
-              <Link href={`/profile/${actualPost.author.username}`} className='font-bold dark:text-gray-200 hover:underline'>{actualPost.author.username}</Link>
-              <p className='dark:text-gray-500 text-sm'>@{actualPost.author.username}</p>
-            </div>
-              {user?.id === actualPost.author.id && (
-                <div className='flex items-center gap-3'>
-                  <UpdatePost post={{id: actualPost.id}}/>
-                  <DeletePost post={{id: actualPost.id}}/>
-                </div>
-              )}
+          <Link href={`/post/${actualPost.id}`}>
+            <div className='flex items-center justify-between'>
+              <div className='flex items-center gap-3'>
+                <Link href={`/profile/${actualPost.author.username}`} className='font-bold dark:text-gray-200 hover:underline'>{actualPost.author.username}</Link>
+                <p className='dark:text-gray-500 text-sm'>@{actualPost.author.username}</p>
               </div>
+                {user?.id === actualPost.author.id && (
+                  <div className='flex items-center gap-3'>
+                    <UpdatePost post={{id: actualPost.id}}/>
+                    <DeletePost post={{id: actualPost.id}}/>
+                  </div>
+                )}
+            </div>
             <p className='mb-3 text-sm dark:text-gray-200'>{actualPost.title}</p>
 
              {actualPost.image ? (
                <Image src={actualPost.image} alt='post image' width={800} height={600} className='w-full max-w-md object-cover mb-3 rounded-xl'/>
              ): null}
+          </Link>
 
             {/* Actions */}
             <div className='flex items-center gap-6'>

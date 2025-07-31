@@ -67,6 +67,29 @@ export const getPosts = async () => {
   }
 }
 
+// Get Single Post
+export const getPostById = async (postId: string) => {
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: postId
+      },
+      include: {
+        author: { select: { id: true, username: true, email: true, image: true } },
+        likes: { select: { userId: true } },
+        comments: { include: { author: {select: { id: true, username: true, image: true }} } },
+        _count: { select: { likes: true, comments: true } }
+      }
+    })  
+
+    return post
+  } 
+  catch (error) {
+    console.log("Error fetching user post", error)
+    throw new Error('Error fetching user post')
+  }
+}
+
 // Delete Post
 export const deletePost = async (postId: string) => {
   try {

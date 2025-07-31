@@ -1,8 +1,7 @@
 import { SignJWT } from "jose";
-import { User } from "@prisma/client";
 import { cookies } from "next/headers";
 
-const generateToken = async (user: User) => {
+const generateToken = async (user: {id: string}) => {
 
   const token = await new SignJWT({id: user.id})
     .setProtectedHeader({ alg: 'HS256' })
