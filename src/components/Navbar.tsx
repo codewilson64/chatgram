@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user } = useAuth()
 
   return (
-    <div className='w-full flex items-center justify-between py-3'>
+    <div className='w-full max-w-[1280px] mx-auto flex items-center justify-between py-3'>
       <Link href={'/'} className='text-xl font-bold'>Chatgram.</Link>
       <div className='flex items-center gap-3'>
         <Link href={`/profile/${user?.username}`}>

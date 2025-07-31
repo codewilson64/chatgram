@@ -5,7 +5,6 @@ import UserProfile from './UserProfile'
 import Navbar from '@/components/Navbar'
 import requireAuth from '@/lib/requireAuth'
 
-
 const profilePage = async ({ params }: { params: Promise<{ username: string }> }) => {
   await requireAuth()
   
@@ -15,18 +14,21 @@ const profilePage = async ({ params }: { params: Promise<{ username: string }> }
   
   if (!profile) return <div>Profile not found</div>;
 
-  const posts = await getUserPosts(profile.id)
-  const likedPosts = await getLikedPosts(profile.id)
+  const [posts, likedPosts] = await Promise.all([
+    getUserPosts(profile.id),
+    getLikedPosts(profile.id)
+  ])
+
   
   return (
-    <>
-      <div className='px-5'>
+    <div className='px-5'>
+      <div className='w-full'>
         <Navbar />
       </div>
-      <div className='max-w-[600px] px-4 pb-4 mx-auto'>
+      <div className='w-full max-w-[600px] pb-4 mx-auto'>
         <UserProfile profile={profile} posts={posts} likedPosts={likedPosts}/>
       </div>
-    </>
+    </div>
   )
 }
 

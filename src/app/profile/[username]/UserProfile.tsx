@@ -16,7 +16,7 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
   return (
     <div className="flex flex-col gap-3 border border-gray-300/60 dark:border-zinc-300/20 rounded-lg">
       {/* Top content */}
-      <div className='mb-6 p-4'>
+      <div className='mb-6 px-3 py-3'>
         <div className='flex items-center justify-between'>
           <div className='rounded-full mb-3'>
             <Image 
@@ -49,14 +49,14 @@ const UserProfile = ({ profile, posts, likedPosts }: UserProfileProps) => {
         </TabsList>
         </div>
         <TabsContent value="posts">
-          <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-4'>
+          <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-3'>
             {user && posts?.map((post) => (
               <PostCard key={post.id} post={post} user={user}/>
             ))}
           </div>
         </TabsContent>
         <TabsContent value="likes">
-          <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-4'>
+          <div className='flex flex-col gap-3 border-t border-gray-300/50 dark:border-zinc-300/20 p-3'>
             {user && likedPosts?.map((likedPost) => (
               <PostCard key={likedPost.id} likedPost={likedPost} user={user}/>
             ))}
